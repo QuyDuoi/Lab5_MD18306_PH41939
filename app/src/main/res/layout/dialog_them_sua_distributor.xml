@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/background_dialog_them_sua"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_title_dialog"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Thêm nhà phân phối"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilDistributor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
+            android:layout_marginTop="5dp"
+            android:hint="Tên nhà phân phối">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edtDistributor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnCancelThem"
+                android:layout_width="140dp"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/button_login"
+                android:text="Hủy"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/btnSaveThem"
+                android:layout_width="140dp"
+                android:layout_height="45dp"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/button_login"
+                android:text="Đồng ý"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
