@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.lab5_md18306_ph41939.Model.Response;
+import com.example.lab5_md18306_ph41939.Model.User;
 import com.example.lab5_md18306_ph41939.Services.ApiServices;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -39,7 +41,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -148,24 +149,29 @@ public class DangKy extends AppCompatActivity {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
                 ApiServices apiService = retrofit.create(ApiServices.class);
-                apiService.register(_username, _password, _email, _name, multiparBody).enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        if(response.isSuccessful()) {
-                            Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(DangKy.this, "Đăng ký thất bại!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-                        Log.d("Error", "Thất bại: "+ t.getMessage());
-                    }
-                });
+                apiService.register(_username, _password, _email, _name, multiparBody).enqueue(responseUser);
             }
         });
     }
+    Callback<Response<User>> responseUser = new Callback<Response<User>>() {
+        @Override
+        public void onResponse(Call<Response<User>> call, retrofit2.Response<Response<User>> response) {
+            if(response.isSuccessful()) {
+                if(response.body().getStatus() == 200) {
+                    Toast.makeText(DangKy.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(DangKy.this, DangNhap.class));
+                    finish();
+                } else {
+                    Toast.makeText(DangKy.this, "Đăng ký thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+
+        @Override
+        public void onFailure(Call<Response<User>> call, Throwable t) {
+            Log.d(">>> GetListDistributor", "onFailure: "+ t.getMessage());
+        }
+    };
     private void chooseImage() {
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             Intent intent = new Intent();

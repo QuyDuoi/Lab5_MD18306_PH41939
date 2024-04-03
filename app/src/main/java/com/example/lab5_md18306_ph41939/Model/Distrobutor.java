@@ -1,4 +1,4 @@
-package com.example.lab5_md18306_ph41939;
+package com.example.lab5_md18306_ph41939.Model;
 
 import com.google.gson.annotations.SerializedName;
 

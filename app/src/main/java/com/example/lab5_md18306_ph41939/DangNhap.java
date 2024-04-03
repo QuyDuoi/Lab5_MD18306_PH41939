@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lab5_md18306_ph41939.Model.Response;
+import com.example.lab5_md18306_ph41939.Model.User;
 import com.example.lab5_md18306_ph41939.Services.ApiServices;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -92,7 +93,7 @@ public class DangNhap extends AppCompatActivity {
                     editor.putString("refreshToken", response.body().getRefreshToken());
                     editor.putString("id", response.body().getData().getId());
                     editor.apply();
-                    startActivity(new Intent(DangNhap.this, MainActivity.class));
+                    startActivity(new Intent(DangNhap.this, DanhSachHoaQua.class));
                 } else {
                     Toast.makeText(DangNhap.this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
                 }

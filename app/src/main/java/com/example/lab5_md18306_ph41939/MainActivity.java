@@ -20,6 +20,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lab5_md18306_ph41939.Adapter.DistrobutorAdapter;
+import com.example.lab5_md18306_ph41939.Model.Distrobutor;
 import com.example.lab5_md18306_ph41939.Services.ApiServices;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -58,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<ArrayList<Distrobutor>> call, retrofit2.Response<ArrayList<Distrobutor>> response) {
                 if (response.isSuccessful()){
                     list = response.body();
-
                     adapter = new DistrobutorAdapter(MainActivity.this, list);
                     rcv.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                     rcv.setAdapter(adapter);
@@ -70,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Main", t.getMessage());
             }
         });
+
         btnThem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
